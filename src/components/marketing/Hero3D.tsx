@@ -9,11 +9,29 @@ import {
   MoveUpRight,
 } from "lucide-react";
 
+type Palette = "aurora" | "sunset" | "cyber";
+
+const palettes: {
+  id: Palette;
+  name: string;
+  color: string;
+}[] = [
+  { id: "aurora", name: "Violet & cyan", color: "#22d3ee" },
+  { id: "sunset", name: "Orange & pink", color: "#ff7a45" },
+  { id: "cyber", name: "Lime & electric blue", color: "#a3ff12" },
+];
+
 export default function Hero3D() {
   const [tilt, setTilt] = useState({ x: 0, y: 0 });
+  const [palette, setPalette] = useState<Palette>("aurora");
 
-  function handleMove(event: React.MouseEvent<HTMLElement>) {
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+  function handlePointerMove(
+    event: React.PointerEvent<HTMLDivElement>,
+  ) {
+    if (
+      event.pointerType === "touch" ||
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       return;
     }
 
@@ -21,7 +39,10 @@ export default function Hero3D() {
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
 
-    setTilt({ x: y * -12, y: x * 16 });
+    setTilt({
+      x: Math.max(-14, Math.min(14, -y * 24)),
+      y: Math.max(-18, Math.min(18, x * 32)),
+    });
   }
 
   function resetTilt() {
@@ -31,8 +52,7 @@ export default function Hero3D() {
   return (
     <section
       className="hero3d-section"
-      onMouseMove={handleMove}
-      onMouseLeave={resetTilt}
+      data-palette={palette}
     >
       <div className="hero3d-grid" aria-hidden="true" />
       <div className="hero3d-glow hero3d-glow-one" aria-hidden="true" />
@@ -52,14 +72,16 @@ export default function Hero3D() {
           </h1>
 
           <p className="hero3d-description">
-            We combine strategy, creative, and technology to help ambitious
-            businesses get noticed, win customers, and grow with purpose.
+            We combine strategy, creative, and technology to help
+            ambitious businesses get noticed, win customers, and
+            grow with purpose.
           </p>
 
           <div className="hero3d-actions">
             <Link className="button-primary" href="/contact">
               Start a project <MoveUpRight size={17} />
             </Link>
+
             <Link className="button-quiet" href="/services">
               Explore capabilities <ArrowDownRight size={17} />
             </Link>
@@ -71,20 +93,45 @@ export default function Hero3D() {
           </div>
         </div>
 
-        <div
-          className="hero3d-art"
-          aria-label="Interactive abstract 3D artwork"
-        >
+        <div className="hero3d-art">
           <div className="scene-label scene-label-top">
             <span>RD / 001</span>
-            <span>CREATIVE SYSTEMS</span>
+            <span>INTERACTIVE 3D STUDIO</span>
+          </div>
+
+          <div
+            className="palette-controls"
+            aria-label="Choose visual color theme"
+          >
+            <span className="palette-caption">COLOR MODE</span>
+
+            {palettes.map((option) => (
+              <button
+                key={option.id}
+                type="button"
+                className={`palette-button ${
+                  palette === option.id ? "is-active" : ""
+                }`}
+                onClick={() => setPalette(option.id)}
+                aria-label={option.name}
+                aria-pressed={palette === option.id}
+                title={option.name}
+                style={{ "--swatch": option.color } as React.CSSProperties}
+              >
+                <span className="palette-swatch" />
+              </button>
+            ))}
           </div>
 
           <div
             className="orbit-scene"
+            onPointerMove={handlePointerMove}
+            onPointerLeave={resetTilt}
             style={{
               transform: `rotateX(${tilt.x}deg) rotateY(${tilt.y}deg)`,
             }}
+            aria-label="Interactive three-dimensional artwork"
+            role="img"
           >
             <div className="orbit orbit-a" />
             <div className="orbit orbit-b" />
@@ -95,6 +142,15 @@ export default function Hero3D() {
               <div className="orb-core-shade" />
             </div>
 
+            <div className="orb-cube" aria-hidden="true">
+              <span className="cube-face cube-front" />
+              <span className="cube-face cube-back" />
+              <span className="cube-face cube-right" />
+              <span className="cube-face cube-left" />
+              <span className="cube-face cube-top" />
+              <span className="cube-face cube-bottom" />
+            </div>
+
             <div className="orb-small orb-small-a" />
             <div className="orb-small orb-small-b" />
             <div className="orb-small orb-small-c" />
@@ -103,7 +159,7 @@ export default function Hero3D() {
 
           <div className="scene-label scene-label-bottom">
             <span>IDEAS INTO IMPACT</span>
-            <span>EST. FOR WHAT&apos;S NEXT ↗</span>
+            <span>MOVE YOUR POINTER ↗</span>
           </div>
 
           <div className="floating-note">
