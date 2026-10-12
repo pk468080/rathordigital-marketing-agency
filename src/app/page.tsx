@@ -1,129 +1,220 @@
-import Link from 'next/link';
-import { Button } from '@/components/ui/Button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
-import { ArrowRight, BarChart, Monitor, Video, Globe } from 'lucide-react';
+
+import Link from "next/link";
+import {
+  ArrowUpRight,
+  BarChart3,
+  Code2,
+  MousePointer2,
+  ShoppingBag,
+  Sparkles,
+} from "lucide-react";
+import Hero3D from "@/components/marketing/Hero3D";
+
+const services = [
+  {
+    number: "01",
+    title: "Performance marketing",
+    description:
+      "Paid campaigns built around clear goals, stronger creative, and smarter optimization.",
+    tags: "META ADS · GOOGLE ADS",
+    Icon: BarChart3,
+  },
+  {
+    number: "02",
+    title: "Search and visibility",
+    description:
+      "Help the right people find you through useful content and a stronger search presence.",
+    tags: "SEO · LOCAL SEARCH",
+    Icon: MousePointer2,
+  },
+  {
+    number: "03",
+    title: "Digital experiences",
+    description:
+      "Fast, responsive websites designed to turn attention into meaningful action.",
+    tags: "WEB · LANDING PAGES",
+    Icon: Code2,
+  },
+  {
+    number: "04",
+    title: "Commerce and content",
+    description:
+      "Online stores and compelling video content that give your brand room to grow.",
+    tags: "E-COMMERCE · VIDEO",
+    Icon: ShoppingBag,
+  },
+];
+
+const process = [
+  {
+    number: "01",
+    title: "Discover",
+    description:
+      "Understand your offer, audience, goals, and what is holding growth back.",
+  },
+  {
+    number: "02",
+    title: "Define",
+    description:
+      "Build a focused plan with priorities, deliverables, and measurable outcomes.",
+  },
+  {
+    number: "03",
+    title: "Create",
+    description:
+      "Bring the strategy to life through thoughtful creative and practical execution.",
+  },
+  {
+    number: "04",
+    title: "Improve",
+    description:
+      "Learn from performance, share clear reporting, and keep improving.",
+  },
+];
 
 export default function Home() {
   return (
-    <div className="flex flex-col items-center">
-      {/* Hero Section */}
-      <section className="w-full bg-slate-50 py-20 md:py-32">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h1 className="text-4xl md:text-6xl font-extrabold text-slate-900 tracking-tight mb-6">
-            Take Your Business <span className="text-primary">Online</span>
-          </h1>
-          <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10">
-            Rathore Digital Marketing Agency provides comprehensive digital solutions to scale your business. From SEO to full e-commerce development, we&apos;ve got you covered.
-          </p>
-          <div className="flex justify-center gap-4">
-            <Link href="/contact">
-              <Button size="lg" className="gap-2">
-                Get a Free Consultation <ArrowRight className="w-5 h-5" />
-              </Button>
-            </Link>
-            <Link href="/services">
-              <Button size="lg" variant="outline">
-                Our Services
-              </Button>
+    <>
+      <Hero3D />
+
+      <section className="ticker" aria-label="Our capabilities">
+        <div className="ticker-track">
+          {Array.from({ length: 2 }).map((_, index) => (
+            <span className="ticker-group" key={index}>
+              <span>STRATEGY</span>
+              <b>✳</b>
+              <span>CREATIVE</span>
+              <b>✳</b>
+              <span>PERFORMANCE</span>
+              <b>✳</b>
+              <span>TECHNOLOGY</span>
+              <b>✳</b>
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <section className="section-wrap intro-section">
+        <div className="section-kicker">
+          <span>01 / THE STUDIO</span>
+          <span>CLARITY OVER NOISE</span>
+        </div>
+
+        <div className="intro-grid">
+          <h2>
+            Good work should
+            <br />
+            move your business <em>forward.</em>
+          </h2>
+
+          <div className="intro-copy">
+            <p>
+              Rathore Digital brings strategy, marketing, and digital
+              experiences together under one roof. We focus on the work that
+              matters to your customers and the outcomes that matter to your
+              business.
+            </p>
+            <Link className="text-link" href="/about">
+              Get to know us <ArrowUpRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* Services Overview Section */}
-      <section className="w-full py-20 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold text-slate-900 mb-4">What We Do</h2>
-            <p className="text-slate-600 max-w-2xl mx-auto">
-              We offer end-to-end digital marketing and development services to ensure your brand stands out in the digital landscape.
+      <section className="services-section">
+        <div className="section-wrap">
+          <div className="section-kicker">
+            <span>02 / WHAT WE DO</span>
+            <span>CONNECTED CAPABILITIES</span>
+          </div>
+
+          <div className="section-heading-row">
+            <h2>
+              Everything working
+              <br />
+              toward <em>one goal.</em>
+            </h2>
+            <p>
+              Useful strategy. Distinctive creative. Digital systems built to
+              perform.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-primary">
-                  <BarChart className="w-6 h-6" />
+          <div className="service-grid">
+            {services.map(({ number, title, description, tags, Icon }) => (
+              <article className="service-card" key={number}>
+                <div className="service-card-top">
+                  <span>{number}</span>
+                  <Icon size={23} strokeWidth={1.5} />
                 </div>
-                <CardTitle>Digital Marketing</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 mb-4">Data-driven SEO, Google Ads, and Meta Ads to drive targeted traffic.</p>
-                <Link href="/services/seo" className="text-primary font-medium hover:underline flex items-center text-sm">
-                  Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-primary">
-                  <Monitor className="w-6 h-6" />
-                </div>
-                <CardTitle>Web Development</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 mb-4">Custom websites and E-commerce stores built for performance and conversion.</p>
-                <Link href="/services/web-development" className="text-primary font-medium hover:underline flex items-center text-sm">
-                  Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-primary">
-                  <Video className="w-6 h-6" />
-                </div>
-                <CardTitle>Video Editing</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 mb-4">Engaging video content to capture your audience&apos;s attention on social media.</p>
-                <Link href="/services/video-editing" className="text-primary font-medium hover:underline flex items-center text-sm">
-                  Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </CardContent>
-            </Card>
-
-            <Card>
-              <CardHeader>
-                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4 text-primary">
-                  <Globe className="w-6 h-6" />
-                </div>
-                <CardTitle>Business Transition</CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-slate-600 mb-4">Full consultation and execution to shift your brick-and-mortar business online.</p>
-                <Link href="/services/consultation" className="text-primary font-medium hover:underline flex items-center text-sm">
-                  Learn more <ArrowRight className="w-4 h-4 ml-1" />
-                </Link>
-              </CardContent>
-            </Card>
+                <h3>{title}</h3>
+                <p>{description}</p>
+                <span className="service-tags">{tags}</span>
+              </article>
+            ))}
           </div>
 
-          <div className="mt-12 text-center">
-            <Link href="/services">
-              <Button variant="secondary">View All Services</Button>
+          <div className="section-footer">
+            <span>ONE TEAM. CONNECTED THINKING.</span>
+            <Link className="text-link" href="/services">
+              Explore all services <ArrowUpRight size={16} />
             </Link>
           </div>
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="w-full bg-primary py-20">
-        <div className="max-w-4xl mx-auto px-4 text-center">
-          <h2 className="text-3xl font-bold text-white mb-6">Ready to grow your digital presence?</h2>
-          <p className="text-blue-100 mb-10 text-lg">
-            Let&apos;s discuss your goals and create a custom strategy for your business.
+      <section className="section-wrap process-section">
+        <div className="section-kicker">
+          <span>03 / HOW WE WORK</span>
+          <span>NO MYSTERY. NO GUESSWORK.</span>
+        </div>
+
+        <div className="section-heading-row">
+          <h2>
+            A clear path from
+            <br />
+            idea to <em>impact.</em>
+          </h2>
+          <p>
+            Good partnerships start with listening, stay grounded in evidence,
+            and get better with every iteration.
           </p>
-          <Link href="/contact">
-            <Button size="lg" variant="secondary" className="text-primary font-bold">
-              Start Your Journey Today
-            </Button>
-          </Link>
+        </div>
+
+        <div className="process-grid">
+          {process.map((step) => (
+            <article className="process-step" key={step.number}>
+              <span>{step.number}</span>
+              <h3>{step.title}</h3>
+              <p>{step.description}</p>
+            </article>
+          ))}
         </div>
       </section>
-    </div>
+
+      <section className="cta-section">
+        <div className="cta-orb" aria-hidden="true">
+          <Sparkles size={44} strokeWidth={1} />
+        </div>
+
+        <div className="cta-content">
+          <p className="eyebrow">HAVE A GOOD CHALLENGE?</p>
+          <h2>
+            Let&apos;s make
+            <br />
+            <em>something happen.</em>
+          </h2>
+          <p>
+            Tell us where you want to go. We&apos;ll help you figure out the
+            next move.
+          </p>
+          <Link href="/contact" className="button-primary">
+            Start a conversation <ArrowUpRight size={17} />
+          </Link>
+        </div>
+
+        <span className="cta-index">RD / LET&apos;S BUILD</span>
+      </section>
+    </>
   );
 }

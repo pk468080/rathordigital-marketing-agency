@@ -1,40 +1,86 @@
-import Link from 'next/link';
 
+"use client";
+
+import Link from "next/link";
+import { useState } from "react";
+import { ArrowUpRight, Menu, X } from "lucide-react";
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/services", label: "Services" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
 
 export default function Navbar() {
+  const [open, setOpen] = useState(false);
+
   return (
-    <nav className="bg-background border-b border-gray-200 sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16">
-          <div className="flex">
-            <div className="flex-shrink-0 flex items-center">
-              <Link href="/" className="text-xl font-bold text-primary">
-                Rathore Agency
-              </Link>
-            </div>
-            <div className="hidden sm:ml-6 sm:flex sm:space-x-8">
-              <Link href="/" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-primary text-sm font-medium text-foreground hover:text-primary transition-colors">
-                Home
-              </Link>
-              <Link href="/services" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-primary text-sm font-medium text-foreground hover:text-primary transition-colors">
-                Services
-              </Link>
-              <Link href="/about" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-primary text-sm font-medium text-foreground hover:text-primary transition-colors">
-                About
-              </Link>
-              <Link href="/contact" className="inline-flex items-center px-1 pt-1 border-b-2 border-transparent hover:border-primary text-sm font-medium text-foreground hover:text-primary transition-colors">
-                Contact
-              </Link>
-            </div>
-          </div>
-          <div className="hidden sm:ml-6 sm:flex sm:items-center">
-             <Link href="/contact" className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-blue-600 transition-colors">
-                Get a Quote
-             </Link>
-          </div>
-          {/* Mobile menu button could go here, omitting for simplicity in v1 */}
+    <header className="site-header">
+      <nav className="site-nav" aria-label="Main navigation">
+        <Link
+          href="/"
+          className="brand"
+          onClick={() => setOpen(false)}
+          aria-label="Rathore Digital home"
+        >
+          <span className="brand-symbol">
+            R<span>D</span>
+          </span>
+          <span className="brand-name">
+            RATHORE<span>DIGITAL</span>
+          </span>
+        </Link>
+
+        <div className="desktop-nav">
+          {links.map((link) => (
+            <Link href={link.href} key={link.href}>
+              {link.label}
+            </Link>
+          ))}
         </div>
+
+        <Link href="/contact" className="nav-cta">
+          Let&apos;s talk <ArrowUpRight size={16} />
+        </Link>
+
+        <button
+          className="mobile-menu-toggle"
+          type="button"
+          aria-label={open ? "Close navigation menu" : "Open navigation menu"}
+          aria-expanded={open}
+          aria-controls="mobile-navigation"
+          onClick={() => setOpen((value) => !value)}
+        >
+          {open ? <X size={22} /> : <Menu size={22} />}
+        </button>
+      </nav>
+
+      <div
+        id="mobile-navigation"
+        className={`mobile-nav ${open ? "is-open" : ""}`}
+        hidden={!open}
+      >
+        {links.map((link, index) => (
+          <Link
+            href={link.href}
+            key={link.href}
+            onClick={() => setOpen(false)}
+          >
+            <span>0{index + 1}</span>
+            {link.label}
+            <ArrowUpRight size={16} />
+          </Link>
+        ))}
+
+        <Link
+          href="/contact"
+          className="mobile-nav-cta"
+          onClick={() => setOpen(false)}
+        >
+          Start a project <ArrowUpRight size={16} />
+        </Link>
       </div>
-    </nav>
+    </header>
   );
 }
