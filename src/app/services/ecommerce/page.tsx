@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'E-commerce Store Development',
+  description: 'Launch your online store with a custom e-commerce website built for sales — product pages, checkout and payments.',
+};
 
 export default function EcommercePage() {
   return (

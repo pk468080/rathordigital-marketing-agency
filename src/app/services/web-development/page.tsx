@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Website Development Services',
+  description: 'Custom, fast, mobile-friendly websites built to convert visitors into customers.',
+};
 
 export default function WebDevPage() {
   return (

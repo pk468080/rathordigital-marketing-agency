@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Video Editing Services',
+  description: 'Scroll-stopping video content for social media, ads and YouTube — edited to match your brand.',
+};
 
 export default function VideoEditingPage() {
   return (

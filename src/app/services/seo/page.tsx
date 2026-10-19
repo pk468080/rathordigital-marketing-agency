@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Search Engine Optimization (SEO) Services',
+  description: 'Rank higher on Google with our SEO services: keyword research, on-page and technical SEO, link building and local SEO.',
+};
 
 export default function SEOPage() {
   return (
