@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Google Ads (PPC) Services',
+  description: 'Get instant, high-intent traffic with Google Ads campaigns built for ROI — search, display and YouTube.',
+};
 
 export default function GoogleAdsPage() {
   return (

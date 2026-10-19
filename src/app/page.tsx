@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { site } from '@/lib/site';
 import { Button } from '@/components/ui/Button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/Card';
 import { ArrowRight, BarChart, Monitor, Video, Globe } from 'lucide-react';
@@ -13,7 +14,7 @@ export default function Home() {
             Take Your Business <span className="text-primary">Online</span>
           </h1>
           <p className="text-xl text-slate-600 max-w-2xl mx-auto mb-10">
-            Rathore Digital Marketing Agency provides comprehensive digital solutions to scale your business. From SEO to full e-commerce development, we&apos;ve got you covered.
+            {site.name} provides comprehensive digital solutions to scale your business. From SEO to full e-commerce development, we&apos;ve got you covered.
           </p>
           <div className="flex justify-center gap-4">
             <Link href="/contact">

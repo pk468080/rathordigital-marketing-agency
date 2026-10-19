@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Meta Ads Services (Facebook & Instagram)',
+  description: 'Reach your customers on Facebook and Instagram with targeted Meta ad campaigns managed by our experts.',
+};
 
 export default function MetaAdsPage() {
   return (

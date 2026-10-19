@@ -1,5 +1,12 @@
 import Link from 'next/link';
 import { Button } from '@/components/ui/Button';
+import type { Metadata } from 'next';
+
+
+export const metadata: Metadata = {
+  title: 'Business Consultation Services',
+  description: 'Take your brick-and-mortar business online with expert consultation and end-to-end execution.',
+};
 
 export default function ConsultationPage() {
   return (

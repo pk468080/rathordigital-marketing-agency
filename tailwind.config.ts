@@ -1,3 +1,6 @@
+// NOTE: This project uses Tailwind CSS v4, which ignores this file.
+// The theme (brand colors etc.) now lives in `src/app/globals.css`
+// inside the `@theme` block. This file is kept only for reference.
 import type { Config } from "tailwindcss";
 
 const config: Config = {
@@ -14,7 +17,7 @@ const config: Config = {
         primary: {
           DEFAULT: "var(--primary)",
           foreground: "var(--primary-foreground)",
-        }
+        },
       },
     },
   },

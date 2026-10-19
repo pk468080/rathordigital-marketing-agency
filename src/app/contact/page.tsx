@@ -1,5 +1,12 @@
-import { Button } from '@/components/ui/Button';
+import type { Metadata } from 'next';
 import { Mail, Phone, MapPin } from 'lucide-react';
+import ContactForm from '@/components/ContactForm';
+import { site } from '@/lib/site';
+
+export const metadata: Metadata = {
+  title: 'Contact Us',
+  description: `Get in touch with ${site.name} for a free consultation on SEO, ads, web development and more.`,
+};
 
 export default function ContactPage() {
   return (
@@ -25,7 +32,11 @@ export default function ContactPage() {
               </div>
               <div className="ml-4">
                 <h3 className="text-lg font-medium text-slate-900">Email</h3>
-                <p className="mt-1 text-slate-600">hello@rathoreagency.com</p>
+                <p className="mt-1 text-slate-600">
+                  <a href={`mailto:${site.email}`} className="hover:text-primary transition-colors">
+                    {site.email}
+                  </a>
+                </p>
               </div>
             </div>
 
@@ -37,7 +48,11 @@ export default function ContactPage() {
               </div>
               <div className="ml-4">
                 <h3 className="text-lg font-medium text-slate-900">Phone</h3>
-                <p className="mt-1 text-slate-600">+1 (555) 123-4567</p>
+                <p className="mt-1 text-slate-600">
+                  <a href={`tel:${site.phone.replace(/\s/g, '')}`} className="hover:text-primary transition-colors">
+                    {site.phone}
+                  </a>
+                </p>
               </div>
             </div>
 
@@ -49,57 +64,23 @@ export default function ContactPage() {
               </div>
               <div className="ml-4">
                 <h3 className="text-lg font-medium text-slate-900">Office</h3>
-                <p className="mt-1 text-slate-600">123 Digital Way<br />Tech District, City 10001</p>
+                <p className="mt-1 text-slate-600">
+                  {site.addressLines.map((line) => (
+                    <span key={line}>
+                      {line}
+                      <br />
+                    </span>
+                  ))}
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Contact Form UI */}
+        {/* Contact Form */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-8">
           <h2 className="text-2xl font-bold text-slate-900 mb-6">Send us a message</h2>
-          <form className="space-y-6">
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-              <div>
-                <label htmlFor="first-name" className="block text-sm font-medium text-slate-700">First name</label>
-                <input type="text" name="first-name" id="first-name" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm border p-2" placeholder="John" />
-              </div>
-              <div>
-                <label htmlFor="last-name" className="block text-sm font-medium text-slate-700">Last name</label>
-                <input type="text" name="last-name" id="last-name" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm border p-2" placeholder="Doe" />
-              </div>
-            </div>
-
-            <div>
-              <label htmlFor="email" className="block text-sm font-medium text-slate-700">Email address</label>
-              <input type="email" name="email" id="email" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm border p-2" placeholder="john@example.com" />
-            </div>
-
-            <div>
-              <label htmlFor="service" className="block text-sm font-medium text-slate-700">Service you are interested in</label>
-              <select id="service" name="service" className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm border p-2 bg-white">
-                <option>SEO</option>
-                <option>Meta Ads</option>
-                <option>Google Ads</option>
-                <option>Web Development</option>
-                <option>E-commerce Store</option>
-                <option>Video Editing</option>
-                <option>Business Transition</option>
-                <option>Other / Unsure</option>
-              </select>
-            </div>
-
-            <div>
-              <label htmlFor="message" className="block text-sm font-medium text-slate-700">Message</label>
-              <textarea id="message" name="message" rows={4} className="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-primary focus:ring-primary sm:text-sm border p-2" placeholder="Tell us about your project..."></textarea>
-            </div>
-
-            <div>
-              <Button type="button" className="w-full">
-                Send Message
-              </Button>
-            </div>
-          </form>
+          <ContactForm />
         </div>
       </div>
     </div>

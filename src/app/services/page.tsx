@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Card, CardHeader, CardTitle, CardContent } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
 import { ArrowRight, Search, MonitorPlay, MousePointerClick, ShoppingCart, Code, Video, Briefcase } from 'lucide-react';
+import type { Metadata } from 'next';
 
 const services = [
   {
@@ -47,6 +48,12 @@ const services = [
     href: "/services/consultation"
   }
 ];
+
+
+export const metadata: Metadata = {
+  title: 'Our Services',
+  description: 'Explore our full range of digital marketing services: SEO, Meta & Google Ads, web development, e-commerce, video editing and business consultation.',
+};
 
 export default function ServicesPage() {
   return (
